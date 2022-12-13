@@ -1,0 +1,24 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "AutoCommands",
+	"Description": "An engine plugin to automatically run a list of console commands on startup",
+	"Category": "Other",
+	"CreatedBy": "Dakarai Simmons",
+	"CreatedByURL": "https://dakar.ai",
+	"DocsURL": "https://github.com/infinitelyCannon/AutoCommands",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"EngineVersion": "4.24.0",
+	"CanContainContent": true,
+	"Installed": true,
+	"EnabledByDefault": true,
+	"Modules": [
+		{
+			"Name": "AutoCommands",
+			"Type": "Editor",
+			"LoadingPhase": "PreDefault"
+		}
+	]
+}
