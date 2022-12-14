@@ -18,5 +18,5 @@ public:
 private:
     bool Tick(const float DeltaTime);
 
-    FDelegateHandle TickHandle;
+    FTSTicker::FDelegateHandle TickHandle;
 };
