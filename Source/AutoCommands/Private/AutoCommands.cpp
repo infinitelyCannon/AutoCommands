@@ -16,44 +16,31 @@ void FAutoCommandsModule::StartupModule()
 
 bool FAutoCommandsModule::Tick(const float DeltaTime)
 {
-    if(!bHasTicked)
+    TArray<IConsoleCommandExecutor*> CommandExecutors = IModularFeatures::Get().GetModularFeatureImplementations<IConsoleCommandExecutor>(IConsoleCommandExecutor::ModularFeatureName());
+    IConsoleCommandExecutor *CommandExecutor = nullptr;
+
+    if(CommandExecutors.IsValidIndex(0))
     {
-        bHasTicked = true;
-
-        TArray<IConsoleCommandExecutor*> CommandExecutors = IModularFeatures::Get().GetModularFeatureImplementations<IConsoleCommandExecutor>(IConsoleCommandExecutor::ModularFeatureName());
-        IConsoleCommandExecutor *CommandExecutor = nullptr;
-
-        if(CommandExecutors.IsValidIndex(0))
-        {
-            CommandExecutor = CommandExecutors[0];
-        }
-
-        if(CommandExecutor == nullptr)
-        {
-            UE_LOG(AutoCommandsPlugin, Warning, TEXT("Could not grab default console executor."));
-            return true;
-        }
-
-        for(const FString &Command : GetDefault<UAutoCommandsSettings>()->CommandList)
-        {
-            UE_LOG(AutoCommandsPlugin, Log, TEXT("Running Command: %s"), *Command);
-            CommandExecutor->Exec(*Command);
-        }
+        CommandExecutor = CommandExecutors[0];
     }
-    else
+
+    if(CommandExecutor == nullptr)
     {
-        FTicker::GetCoreTicker().RemoveTicker(TickHandle);
+        UE_LOG(AutoCommandsPlugin, Warning, TEXT("Could not grab default console executor."));
+        return false;
+    }
+
+    for(const FString &Command : GetDefault<UAutoCommandsSettings>()->CommandList)
+    {
+        UE_LOG(AutoCommandsPlugin, Log, TEXT("Running Command: %s"), *Command);
+        CommandExecutor->Exec(*Command);
     }
     
-    return true;
+    return false;
 }
 
 void FAutoCommandsModule::ShutdownModule()
 {
-	// This function may be called during shutdown to clean up your module.  For modules that support dynamic reloading,
-	// we call this function before unloading the module.
-
-    // Just in case the handle's still valid somehow
     if(TickHandle.IsValid())
     {
         FTicker::GetCoreTicker().RemoveTicker(TickHandle);

@@ -19,5 +19,4 @@ private:
     bool Tick(const float DeltaTime);
 
     FDelegateHandle TickHandle;
-    bool bHasTicked = false;
 };
