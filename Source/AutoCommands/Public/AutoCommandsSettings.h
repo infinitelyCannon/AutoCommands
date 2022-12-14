@@ -23,7 +23,7 @@ public:
     virtual FText GetSectionText() const override;
 #endif
 
-    /** List of commands to run at startup (run before first tick after the Engine initializes) */
+    /** List of commands to run at startup (runs before first tick after the Engine initializes) */
     UPROPERTY(Config, EditAnywhere, Category=Commands, meta=(ConfigRestartRequired=true))
     TArray<FString> CommandList;
 };
