@@ -35,7 +35,7 @@ bool FAutoCommandsModule::Tick(const float DeltaTime)
         UE_LOG(AutoCommandsPlugin, Log, TEXT("Running Command: %s"), *Command);
         CommandExecutor->Exec(*Command);
     }
-
+    
     return false;
 }
 
