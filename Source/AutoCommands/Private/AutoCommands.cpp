@@ -11,7 +11,7 @@ DEFINE_LOG_CATEGORY(AutoCommandsPlugin)
 void FAutoCommandsModule::StartupModule()
 {
 	// Initialize the tick handler
-    TickHandle = FTicker::GetCoreTicker().AddTicker(FTickerDelegate::CreateRaw(this, &FAutoCommandsModule::Tick));
+    TickHandle = FTSTicker::GetCoreTicker().AddTicker(FTickerDelegate::CreateRaw(this, &FAutoCommandsModule::Tick));
 }
 
 bool FAutoCommandsModule::Tick(const float DeltaTime)
@@ -35,7 +35,7 @@ bool FAutoCommandsModule::Tick(const float DeltaTime)
         UE_LOG(AutoCommandsPlugin, Log, TEXT("Running Command: %s"), *Command);
         CommandExecutor->Exec(*Command);
     }
-
+	
     return false;
 }
 
@@ -43,7 +43,7 @@ void FAutoCommandsModule::ShutdownModule()
 {
     if(TickHandle.IsValid())
     {
-        FTicker::GetCoreTicker().RemoveTicker(TickHandle);
+        FTSTicker::GetCoreTicker().RemoveTicker(TickHandle);
     }
 }
 
