@@ -1,4 +1,4 @@
-// Copyright (C) 2022 Dakarai Simmons - All Rights Reserved
+// Copyright (C) 2025 Dakarai Simmons - All Rights Reserved
 
 #include "AutoCommandsSettings.h"
 
@@ -8,11 +8,14 @@ UAutoCommandsSettings::UAutoCommandsSettings()
 {
     CategoryName = TEXT("Plugins");
     SectionName = TEXT("Auto Commands");
+	bRunPlayCommandsWhileSimulating = false;
 }
 
+#if WITH_EDITOR
 FText UAutoCommandsSettings::GetSectionText() const
 {
     return LOCTEXT("SettingsDisplayName", "Auto Commands");
 }
+#endif
 
 #undef LOCTEXT_NAMESPACE

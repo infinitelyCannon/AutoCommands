@@ -1,4 +1,4 @@
-// Copyright (C) 2022 Dakarai Simmons - All Rights Reserved
+// Copyright (C) 2025 Dakarai Simmons - All Rights Reserved
 
 #pragma once
 
@@ -23,7 +23,15 @@ public:
     virtual FText GetSectionText() const override;
 #endif
 
-    /** List of commands to run at startup (runs before first tick after the Engine initializes) */
+    /** List of commands to run once after engine startup (runs before first tick after the Engine initializes) */
     UPROPERTY(Config, EditAnywhere, Category=Commands, meta=(ConfigRestartRequired=true))
-    TArray<FString> CommandList;
+    TArray<FString> StartupCommands;
+
+	/** List of commands to run every time you play in the editor */
+	UPROPERTY(Config, EditAnywhere, Category=Commands)
+	TArray<FString> OnPlayCommands;
+
+	/** Should the OnPlay commands run when simulating? */
+	UPROPERTY(Config, EditAnywhere, Category=Commands)
+	bool bRunPlayCommandsWhileSimulating;
 };

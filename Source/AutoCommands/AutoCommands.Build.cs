@@ -1,4 +1,4 @@
-// Copyright (C) 2022 Dakarai Simmons - All Rights Reserved
+// Copyright (C) 2025 Dakarai Simmons - All Rights Reserved
 
 using UnrealBuildTool;
 
@@ -22,7 +22,8 @@ public class AutoCommands : ModuleRules
 				"Engine",
 				"Slate",
 				"SlateCore",
-				"DeveloperSettings"
+				"DeveloperSettings",
+				"UnrealEd"
 			}
 			);
 	}

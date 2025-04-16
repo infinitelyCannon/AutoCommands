@@ -1,4 +1,4 @@
-// Copyright (C) 2022 Dakarai Simmons - All Rights Reserved
+// Copyright (C) 2025 Dakarai Simmons - All Rights Reserved
 
 #pragma once
 
@@ -17,6 +17,8 @@ public:
 
 private:
     bool Tick(const float DeltaTime);
+	void HandlePIEStarted(const bool bIsSimulating);
 
+	FDelegateHandle PostPIEStartedHandle;
     FTSTicker::FDelegateHandle TickHandle;
 };
